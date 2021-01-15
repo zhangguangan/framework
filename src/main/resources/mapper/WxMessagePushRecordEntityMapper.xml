@@ -1,0 +1,389 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.zga.framework.orm.mapper.WxMessagePushRecordEntityMapper" >
+  <resultMap id="BaseResultMap" type="com.zga.framework.orm.entity.WxMessagePushRecordEntity" >
+    <id column="id" property="id" jdbcType="BIGINT" />
+    <result column="material_library_id" property="materialLibraryId" jdbcType="BIGINT" />
+    <result column="account_id" property="accountId" jdbcType="VARCHAR" />
+    <result column="media_id" property="mediaId" jdbcType="VARCHAR" />
+    <result column="schedule_time" property="scheduleTime" jdbcType="TIMESTAMP" />
+    <result column="message_type" property="messageType" jdbcType="INTEGER" />
+    <result column="push_type" property="pushType" jdbcType="INTEGER" />
+    <result column="push_status" property="pushStatus" jdbcType="INTEGER" />
+    <result column="fail_can_resend_flg" property="failCanResendFlg" jdbcType="INTEGER" />
+    <result column="push_result" property="pushResult" jdbcType="VARCHAR" />
+    <result column="msg_id" property="msgId" jdbcType="VARCHAR" />
+    <result column="msg_data_id" property="msgDataId" jdbcType="VARCHAR" />
+    <result column="client_msg_id" property="clientMsgId" jdbcType="VARCHAR" />
+    <result column="wx_send_status" property="wxSendStatus" jdbcType="VARCHAR" />
+    <result column="wx_send_error_msg" property="wxSendErrorMsg" jdbcType="VARCHAR" />
+    <result column="total_count" property="totalCount" jdbcType="INTEGER" />
+    <result column="filter_count" property="filterCount" jdbcType="INTEGER" />
+    <result column="sent_count" property="sentCount" jdbcType="INTEGER" />
+    <result column="error_count" property="errorCount" jdbcType="INTEGER" />
+    <result column="read_count" property="readCount" jdbcType="INTEGER" />
+    <result column="fav_count" property="favCount" jdbcType="INTEGER" />
+    <result column="created_by" property="createdBy" jdbcType="VARCHAR" />
+    <result column="date_created" property="dateCreated" jdbcType="TIMESTAMP" />
+    <result column="updated_by" property="updatedBy" jdbcType="VARCHAR" />
+    <result column="date_updated" property="dateUpdated" jdbcType="TIMESTAMP" />
+  </resultMap>
+  <resultMap id="ResultMapWithBLOBs" type="com.zga.framework.orm.entity.WxMessagePushRecordEntity" extends="BaseResultMap" >
+    <result column="push_crowd" property="pushCrowd" jdbcType="LONGVARCHAR" />
+    <result column="wx_notify_result" property="wxNotifyResult" jdbcType="LONGVARCHAR" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    id, material_library_id, account_id, media_id, schedule_time, message_type, push_type, 
+    push_status, fail_can_resend_flg, push_result, msg_id, msg_data_id, client_msg_id, 
+    wx_send_status, wx_send_error_msg, total_count, filter_count, sent_count, error_count, 
+    read_count, fav_count, created_by, date_created, updated_by, date_updated
+  </sql>
+  <sql id="Blob_Column_List" >
+    push_crowd, wx_notify_result
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="ResultMapWithBLOBs" parameterType="java.lang.Long" >
+    select 
+    <include refid="Base_Column_List" />
+    ,
+    <include refid="Blob_Column_List" />
+    from wx_message_push_record
+    where id = #{id,jdbcType=BIGINT}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long" >
+    delete from wx_message_push_record
+    where id = #{id,jdbcType=BIGINT}
+  </delete>
+  <insert id="insert" parameterType="com.zga.framework.orm.entity.WxMessagePushRecordEntity" >
+    insert into wx_message_push_record (id, material_library_id, account_id, 
+      media_id, schedule_time, message_type, 
+      push_type, push_status, fail_can_resend_flg, 
+      push_result, msg_id, msg_data_id, 
+      client_msg_id, wx_send_status, wx_send_error_msg, 
+      total_count, filter_count, sent_count, 
+      error_count, read_count, fav_count, 
+      created_by, date_created, updated_by, 
+      date_updated, push_crowd, wx_notify_result
+      )
+    values (#{id,jdbcType=BIGINT}, #{materialLibraryId,jdbcType=BIGINT}, #{accountId,jdbcType=VARCHAR}, 
+      #{mediaId,jdbcType=VARCHAR}, #{scheduleTime,jdbcType=TIMESTAMP}, #{messageType,jdbcType=INTEGER}, 
+      #{pushType,jdbcType=INTEGER}, #{pushStatus,jdbcType=INTEGER}, #{failCanResendFlg,jdbcType=INTEGER}, 
+      #{pushResult,jdbcType=VARCHAR}, #{msgId,jdbcType=VARCHAR}, #{msgDataId,jdbcType=VARCHAR}, 
+      #{clientMsgId,jdbcType=VARCHAR}, #{wxSendStatus,jdbcType=VARCHAR}, #{wxSendErrorMsg,jdbcType=VARCHAR}, 
+      #{totalCount,jdbcType=INTEGER}, #{filterCount,jdbcType=INTEGER}, #{sentCount,jdbcType=INTEGER}, 
+      #{errorCount,jdbcType=INTEGER}, #{readCount,jdbcType=INTEGER}, #{favCount,jdbcType=INTEGER}, 
+      #{createdBy,jdbcType=VARCHAR}, #{dateCreated,jdbcType=TIMESTAMP}, #{updatedBy,jdbcType=VARCHAR}, 
+      #{dateUpdated,jdbcType=TIMESTAMP}, #{pushCrowd,jdbcType=LONGVARCHAR}, #{wxNotifyResult,jdbcType=LONGVARCHAR}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.zga.framework.orm.entity.WxMessagePushRecordEntity" >
+    insert into wx_message_push_record
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="materialLibraryId != null" >
+        material_library_id,
+      </if>
+      <if test="accountId != null" >
+        account_id,
+      </if>
+      <if test="mediaId != null" >
+        media_id,
+      </if>
+      <if test="scheduleTime != null" >
+        schedule_time,
+      </if>
+      <if test="messageType != null" >
+        message_type,
+      </if>
+      <if test="pushType != null" >
+        push_type,
+      </if>
+      <if test="pushStatus != null" >
+        push_status,
+      </if>
+      <if test="failCanResendFlg != null" >
+        fail_can_resend_flg,
+      </if>
+      <if test="pushResult != null" >
+        push_result,
+      </if>
+      <if test="msgId != null" >
+        msg_id,
+      </if>
+      <if test="msgDataId != null" >
+        msg_data_id,
+      </if>
+      <if test="clientMsgId != null" >
+        client_msg_id,
+      </if>
+      <if test="wxSendStatus != null" >
+        wx_send_status,
+      </if>
+      <if test="wxSendErrorMsg != null" >
+        wx_send_error_msg,
+      </if>
+      <if test="totalCount != null" >
+        total_count,
+      </if>
+      <if test="filterCount != null" >
+        filter_count,
+      </if>
+      <if test="sentCount != null" >
+        sent_count,
+      </if>
+      <if test="errorCount != null" >
+        error_count,
+      </if>
+      <if test="readCount != null" >
+        read_count,
+      </if>
+      <if test="favCount != null" >
+        fav_count,
+      </if>
+      <if test="createdBy != null" >
+        created_by,
+      </if>
+      <if test="dateCreated != null" >
+        date_created,
+      </if>
+      <if test="updatedBy != null" >
+        updated_by,
+      </if>
+      <if test="dateUpdated != null" >
+        date_updated,
+      </if>
+      <if test="pushCrowd != null" >
+        push_crowd,
+      </if>
+      <if test="wxNotifyResult != null" >
+        wx_notify_result,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=BIGINT},
+      </if>
+      <if test="materialLibraryId != null" >
+        #{materialLibraryId,jdbcType=BIGINT},
+      </if>
+      <if test="accountId != null" >
+        #{accountId,jdbcType=VARCHAR},
+      </if>
+      <if test="mediaId != null" >
+        #{mediaId,jdbcType=VARCHAR},
+      </if>
+      <if test="scheduleTime != null" >
+        #{scheduleTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="messageType != null" >
+        #{messageType,jdbcType=INTEGER},
+      </if>
+      <if test="pushType != null" >
+        #{pushType,jdbcType=INTEGER},
+      </if>
+      <if test="pushStatus != null" >
+        #{pushStatus,jdbcType=INTEGER},
+      </if>
+      <if test="failCanResendFlg != null" >
+        #{failCanResendFlg,jdbcType=INTEGER},
+      </if>
+      <if test="pushResult != null" >
+        #{pushResult,jdbcType=VARCHAR},
+      </if>
+      <if test="msgId != null" >
+        #{msgId,jdbcType=VARCHAR},
+      </if>
+      <if test="msgDataId != null" >
+        #{msgDataId,jdbcType=VARCHAR},
+      </if>
+      <if test="clientMsgId != null" >
+        #{clientMsgId,jdbcType=VARCHAR},
+      </if>
+      <if test="wxSendStatus != null" >
+        #{wxSendStatus,jdbcType=VARCHAR},
+      </if>
+      <if test="wxSendErrorMsg != null" >
+        #{wxSendErrorMsg,jdbcType=VARCHAR},
+      </if>
+      <if test="totalCount != null" >
+        #{totalCount,jdbcType=INTEGER},
+      </if>
+      <if test="filterCount != null" >
+        #{filterCount,jdbcType=INTEGER},
+      </if>
+      <if test="sentCount != null" >
+        #{sentCount,jdbcType=INTEGER},
+      </if>
+      <if test="errorCount != null" >
+        #{errorCount,jdbcType=INTEGER},
+      </if>
+      <if test="readCount != null" >
+        #{readCount,jdbcType=INTEGER},
+      </if>
+      <if test="favCount != null" >
+        #{favCount,jdbcType=INTEGER},
+      </if>
+      <if test="createdBy != null" >
+        #{createdBy,jdbcType=VARCHAR},
+      </if>
+      <if test="dateCreated != null" >
+        #{dateCreated,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updatedBy != null" >
+        #{updatedBy,jdbcType=VARCHAR},
+      </if>
+      <if test="dateUpdated != null" >
+        #{dateUpdated,jdbcType=TIMESTAMP},
+      </if>
+      <if test="pushCrowd != null" >
+        #{pushCrowd,jdbcType=LONGVARCHAR},
+      </if>
+      <if test="wxNotifyResult != null" >
+        #{wxNotifyResult,jdbcType=LONGVARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.zga.framework.orm.entity.WxMessagePushRecordEntity" >
+    update wx_message_push_record
+    <set >
+      <if test="materialLibraryId != null" >
+        material_library_id = #{materialLibraryId,jdbcType=BIGINT},
+      </if>
+      <if test="accountId != null" >
+        account_id = #{accountId,jdbcType=VARCHAR},
+      </if>
+      <if test="mediaId != null" >
+        media_id = #{mediaId,jdbcType=VARCHAR},
+      </if>
+      <if test="scheduleTime != null" >
+        schedule_time = #{scheduleTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="messageType != null" >
+        message_type = #{messageType,jdbcType=INTEGER},
+      </if>
+      <if test="pushType != null" >
+        push_type = #{pushType,jdbcType=INTEGER},
+      </if>
+      <if test="pushStatus != null" >
+        push_status = #{pushStatus,jdbcType=INTEGER},
+      </if>
+      <if test="failCanResendFlg != null" >
+        fail_can_resend_flg = #{failCanResendFlg,jdbcType=INTEGER},
+      </if>
+      <if test="pushResult != null" >
+        push_result = #{pushResult,jdbcType=VARCHAR},
+      </if>
+      <if test="msgId != null" >
+        msg_id = #{msgId,jdbcType=VARCHAR},
+      </if>
+      <if test="msgDataId != null" >
+        msg_data_id = #{msgDataId,jdbcType=VARCHAR},
+      </if>
+      <if test="clientMsgId != null" >
+        client_msg_id = #{clientMsgId,jdbcType=VARCHAR},
+      </if>
+      <if test="wxSendStatus != null" >
+        wx_send_status = #{wxSendStatus,jdbcType=VARCHAR},
+      </if>
+      <if test="wxSendErrorMsg != null" >
+        wx_send_error_msg = #{wxSendErrorMsg,jdbcType=VARCHAR},
+      </if>
+      <if test="totalCount != null" >
+        total_count = #{totalCount,jdbcType=INTEGER},
+      </if>
+      <if test="filterCount != null" >
+        filter_count = #{filterCount,jdbcType=INTEGER},
+      </if>
+      <if test="sentCount != null" >
+        sent_count = #{sentCount,jdbcType=INTEGER},
+      </if>
+      <if test="errorCount != null" >
+        error_count = #{errorCount,jdbcType=INTEGER},
+      </if>
+      <if test="readCount != null" >
+        read_count = #{readCount,jdbcType=INTEGER},
+      </if>
+      <if test="favCount != null" >
+        fav_count = #{favCount,jdbcType=INTEGER},
+      </if>
+      <if test="createdBy != null" >
+        created_by = #{createdBy,jdbcType=VARCHAR},
+      </if>
+      <if test="dateCreated != null" >
+        date_created = #{dateCreated,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updatedBy != null" >
+        updated_by = #{updatedBy,jdbcType=VARCHAR},
+      </if>
+      <if test="dateUpdated != null" >
+        date_updated = #{dateUpdated,jdbcType=TIMESTAMP},
+      </if>
+      <if test="pushCrowd != null" >
+        push_crowd = #{pushCrowd,jdbcType=LONGVARCHAR},
+      </if>
+      <if test="wxNotifyResult != null" >
+        wx_notify_result = #{wxNotifyResult,jdbcType=LONGVARCHAR},
+      </if>
+    </set>
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKeyWithBLOBs" parameterType="com.zga.framework.orm.entity.WxMessagePushRecordEntity" >
+    update wx_message_push_record
+    set material_library_id = #{materialLibraryId,jdbcType=BIGINT},
+      account_id = #{accountId,jdbcType=VARCHAR},
+      media_id = #{mediaId,jdbcType=VARCHAR},
+      schedule_time = #{scheduleTime,jdbcType=TIMESTAMP},
+      message_type = #{messageType,jdbcType=INTEGER},
+      push_type = #{pushType,jdbcType=INTEGER},
+      push_status = #{pushStatus,jdbcType=INTEGER},
+      fail_can_resend_flg = #{failCanResendFlg,jdbcType=INTEGER},
+      push_result = #{pushResult,jdbcType=VARCHAR},
+      msg_id = #{msgId,jdbcType=VARCHAR},
+      msg_data_id = #{msgDataId,jdbcType=VARCHAR},
+      client_msg_id = #{clientMsgId,jdbcType=VARCHAR},
+      wx_send_status = #{wxSendStatus,jdbcType=VARCHAR},
+      wx_send_error_msg = #{wxSendErrorMsg,jdbcType=VARCHAR},
+      total_count = #{totalCount,jdbcType=INTEGER},
+      filter_count = #{filterCount,jdbcType=INTEGER},
+      sent_count = #{sentCount,jdbcType=INTEGER},
+      error_count = #{errorCount,jdbcType=INTEGER},
+      read_count = #{readCount,jdbcType=INTEGER},
+      fav_count = #{favCount,jdbcType=INTEGER},
+      created_by = #{createdBy,jdbcType=VARCHAR},
+      date_created = #{dateCreated,jdbcType=TIMESTAMP},
+      updated_by = #{updatedBy,jdbcType=VARCHAR},
+      date_updated = #{dateUpdated,jdbcType=TIMESTAMP},
+      push_crowd = #{pushCrowd,jdbcType=LONGVARCHAR},
+      wx_notify_result = #{wxNotifyResult,jdbcType=LONGVARCHAR}
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.zga.framework.orm.entity.WxMessagePushRecordEntity" >
+    update wx_message_push_record
+    set material_library_id = #{materialLibraryId,jdbcType=BIGINT},
+      account_id = #{accountId,jdbcType=VARCHAR},
+      media_id = #{mediaId,jdbcType=VARCHAR},
+      schedule_time = #{scheduleTime,jdbcType=TIMESTAMP},
+      message_type = #{messageType,jdbcType=INTEGER},
+      push_type = #{pushType,jdbcType=INTEGER},
+      push_status = #{pushStatus,jdbcType=INTEGER},
+      fail_can_resend_flg = #{failCanResendFlg,jdbcType=INTEGER},
+      push_result = #{pushResult,jdbcType=VARCHAR},
+      msg_id = #{msgId,jdbcType=VARCHAR},
+      msg_data_id = #{msgDataId,jdbcType=VARCHAR},
+      client_msg_id = #{clientMsgId,jdbcType=VARCHAR},
+      wx_send_status = #{wxSendStatus,jdbcType=VARCHAR},
+      wx_send_error_msg = #{wxSendErrorMsg,jdbcType=VARCHAR},
+      total_count = #{totalCount,jdbcType=INTEGER},
+      filter_count = #{filterCount,jdbcType=INTEGER},
+      sent_count = #{sentCount,jdbcType=INTEGER},
+      error_count = #{errorCount,jdbcType=INTEGER},
+      read_count = #{readCount,jdbcType=INTEGER},
+      fav_count = #{favCount,jdbcType=INTEGER},
+      created_by = #{createdBy,jdbcType=VARCHAR},
+      date_created = #{dateCreated,jdbcType=TIMESTAMP},
+      updated_by = #{updatedBy,jdbcType=VARCHAR},
+      date_updated = #{dateUpdated,jdbcType=TIMESTAMP}
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+</mapper>
