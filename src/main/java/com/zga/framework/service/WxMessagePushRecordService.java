@@ -1,11 +1,11 @@
 package com.zga.framework.service;
 
-import com.zga.framework.orm.entity.WxMessagePushRecordEntity;
+import com.zga.framework.domain.WxMessagePushRecordDomain;
 
 /**
  * Created by zhangguangan on 2021/1/15
  * description:
  */
 public interface WxMessagePushRecordService {
-    public WxMessagePushRecordEntity queryById(Long id);
+    WxMessagePushRecordDomain queryById(Long id);
 }

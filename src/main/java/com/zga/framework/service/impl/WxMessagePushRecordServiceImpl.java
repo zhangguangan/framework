@@ -18,7 +18,7 @@ public class WxMessagePushRecordServiceImpl extends BaseService<WxMessagePushRec
     private WxMessagePushRecordEntityMapper wxMessagePushRecordEntityMapper;
 
     @Override
-    public WxMessagePushRecordEntity queryById(Long id) {
-        return wxMessagePushRecordEntityMapper.selectByPrimaryKey(id);
+    public WxMessagePushRecordDomain queryById(Long id) {
+        return entity2Vo(wxMessagePushRecordEntityMapper.selectByPrimaryKey(id));
     }
 }

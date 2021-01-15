@@ -1,7 +1,7 @@
 package com.zga.framework.controller;
 
-import com.zga.framework.orm.entity.WxMessagePushRecordEntity;
-import com.zga.framework.service.WxMessagePushRecordService;
+import com.zga.framework.domain.WxMessagePushRecordDomain;
+import com.zga.framework.facade.WxMessagePushRecordFacade;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -14,10 +14,10 @@ import javax.annotation.Resource;
 @RestController
 public class WxMessagePushRecordController {
     @Resource
-    private WxMessagePushRecordService wxMessagePushRecordService;
+    private WxMessagePushRecordFacade wxMessagePushRecordFacade;
 
     @RequestMapping("/pushRecord")
-    public WxMessagePushRecordEntity pushRecord() {
-        return wxMessagePushRecordService.queryById(1L);
+    public WxMessagePushRecordDomain pushRecord() {
+        return wxMessagePushRecordFacade.queryById(1L);
     }
 }
